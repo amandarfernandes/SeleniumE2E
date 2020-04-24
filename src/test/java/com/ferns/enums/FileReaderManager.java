@@ -7,8 +7,8 @@ public enum FileReaderManager {
 
 	private ConfigFileReader cfg;
 
-	FileReaderManager() {
-		cfg = new ConfigFileReader();
+	private FileReaderManager() {
+		cfg = ConfigFileReader.getInstance();
 	}
 
 	public ConfigFileReader getConfig() {

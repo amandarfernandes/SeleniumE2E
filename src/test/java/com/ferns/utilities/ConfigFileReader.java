@@ -12,7 +12,7 @@ public class ConfigFileReader {
 	private Properties config;
 	private String resourcePath = System.getProperty("user.dir") + "\\src\\test\\resources\\properties\\";
 	
-	public ConfigFileReader() {
+	private ConfigFileReader() {
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader(resourcePath+"config.properties"));
@@ -27,6 +27,10 @@ public class ConfigFileReader {
 			e.printStackTrace();
 			throw new RuntimeException("Config file not found at "+resourcePath);
 		}		
+	}
+	
+	public static ConfigFileReader getInstance() {
+		return new ConfigFileReader();
 	}
 	
 	public DriverType getBrowserType() {
@@ -49,7 +53,11 @@ public class ConfigFileReader {
 		return config.getProperty("driverPath");
 	}
 	
-	public int getImplicitWaitTime() {
-		return Integer.parseInt(config.getProperty("implicitlyWait"));
+	public int getWaitTime() {
+		return Integer.parseInt(config.getProperty("wait"));
+	}
+	
+	public String getSite() {
+		return config.getProperty("url");
 	}
 }
